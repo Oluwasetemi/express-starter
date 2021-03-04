@@ -4,6 +4,7 @@ const isWindows =
 
 module.exports = {
   extends: ['kentcdodds', 'kentcdodds/jest'],
+  root: true,
   rules: {
     'no-console': 'off',
     'import/no-cycle': 'off',
@@ -16,18 +17,15 @@ module.exports = {
   overrides: [
     {
       files: ['**/__tests__/**'],
+      rules: {
+        'jest/prefer-todo': 'off',
+      },
       settings: {
         'import/resolver': {
           jest: {
-            jestConfigFile: require.resolve('./test/jest.config.projects.js'),
+            jestConfigFile: require.resolve('./test/jest.config.final.js'),
           },
         },
-      },
-    },
-    {
-      files: ['**/__tests__/*.exercise.*'],
-      rules: {
-        'jest/prefer-todo': 'off',
       },
     },
   ],

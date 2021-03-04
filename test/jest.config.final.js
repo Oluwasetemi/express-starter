@@ -1,11 +1,11 @@
 const path = require('path')
 
 module.exports = {
-  displayName: 'final',
+  displayName: 'server',
   roots: [path.join(__dirname, '../src')],
   rootDir: path.join(__dirname, '..'),
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/*.final.*'],
+  testMatch: ['**/__tests__/*.*'],
   moduleDirectories: [
     'node_modules',
     __dirname,
