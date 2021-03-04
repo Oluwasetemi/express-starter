@@ -1,18 +1,19 @@
 #!/usr/bin/env node
+/* eslint-disable no-useless-return */
 
 // adapted from https://gist.github.com/kentcdodds/bb452ffe53a5caa3600197e1d8005733 which I will always convert to a gist using
 //  hub gist create
 
-var spawnSync = require('child_process').spawnSync
+const spawnSync = require('child_process').spawnSync
 
-var FAILURE = 'failure'
-var SUCCESS = 'success'
+const FAILURE = 'failure'
+const SUCCESS = 'success'
 
 // disable https://scarf.sh/
 // which is used by some projects dependencies
 process.env.SCARF_ANALYTICS = false
 
-var styles = {
+const styles = {
   // got these from playing around with what I found from:
   // https://github.com/istanbuljs/istanbuljs/blob/0f328fd0896417ccb2085f4b7888dd8e167ba3fa/packages/istanbul-lib-report/lib/file-writer.js#L84-L96
   // they're the best I could find that works well for light or dark terminals
@@ -29,33 +30,33 @@ function color(modifier, string) {
 function run(title, subtitle, command, options) {
   options = options || {}
 
-  console.log(color('info', '    ▶️  Starting: ' + title))
-  console.log(color('subtitle', '          ' + subtitle))
+  console.log(color('info', `    ▶️  Starting: ${  title}`))
+  console.log(color('subtitle', `          ${  subtitle}`))
   console.log(
-    color('subtitle', '          Running the following command: ' + command),
+    color('subtitle', `          Running the following command: ${  command}`),
   )
 
-  var result = spawnSync(command, {stdio: 'inherit', shell: true})
+  const result = spawnSync(command, {stdio: 'inherit', shell: true})
 
   if (result.status !== 0 && !options.ignoreFailure) {
     console.error(
       color(
         'danger',
-        '    🚨  Failure: ' +
-          title +
-          '. Please review the messages above for information on how to troubleshoot and resolve this issue.',
+        `    🚨  Failure: ${
+          title
+          }. Please review the messages above for information on how to troubleshoot and resolve this issue.`,
       ),
     )
     process.exit(result.status)
     return FAILURE
   }
 
-  console.log(color('success', '    ✅  Success: ' + title + '\n\n'))
+  console.log(color('success', `    ✅  Success: ${  title  }\n\n`))
   return SUCCESS
 }
 
 function main() {
-  var result
+  let result
 
   result = run(
     'System Validation',
