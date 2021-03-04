@@ -1,0 +1,6 @@
+{
+  "name": "server-setup",
+  "version": "1.0.0",
+  "description": "This is the common setup script for most of my projects",
+  "bin": "./main.js"
+}
