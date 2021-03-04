@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import crypto from 'crypto'
 import expressJWT from 'express-jwt'
 import jwt from 'jsonwebtoken'

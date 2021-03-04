@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import * as booksDB from '../../src/db/books'
-import * as usersDB from '../../src/db/users'
-import * as listItemsDB from '../../src/db/list-items'
-import {getUserToken} from '../../src/utils/auth'
+// import * as booksDB from '../../src/db/books'
+// import * as usersDB from '../../src/db/users'
+// import * as listItemsDB from '../../src/db/list-items'
+import { getUserToken } from '../../src/utils/auth'
 import * as generate from './generate'
 
 async function initDb({
@@ -17,9 +17,9 @@ async function initDb({
   ),
 } = {}) {
   await Promise.all([
-    booksDB.insertMany(books),
-    usersDB.insertMany(users),
-    listItemsDB.insertMany(listItems),
+    // booksDB.insertMany(books),
+    // usersDB.insertMany(users),
+    // listItemsDB.insertMany(listItems),
   ])
   return {books, users, listItems}
 }
@@ -34,14 +34,14 @@ async function insertTestUser(
     password: 'joe',
   }),
 ) {
-  await usersDB.insert(testUser)
+  // await usersDB.insert(testUser)
   return {...testUser, token: getUserToken(testUser)}
 }
 
 async function resetDb() {
-  await listItemsDB.drop()
-  await usersDB.drop()
-  await booksDB.drop()
+  // await listItemsDB.drop()
+  // await usersDB.drop()
+  // await booksDB.drop()
 }
 
-export {resetDb, initDb, insertTestUser, generate}
+export { resetDb, initDb, insertTestUser, generate }
